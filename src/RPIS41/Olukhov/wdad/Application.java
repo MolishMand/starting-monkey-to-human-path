@@ -1,5 +1,6 @@
 package RPIS41.Olukhov.wdad;
 
+import RPIS41.Olukhov.wdad.learn.xml.TestXMLClass;
 import RPIS41.Olukhov.wdad.learn.xml.XmlTask;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
