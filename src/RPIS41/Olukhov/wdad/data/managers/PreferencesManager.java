@@ -44,6 +44,7 @@ public class PreferencesManager {
     }
 
     public boolean isCreateRegistry(){
+        //TODO FUCK OFF BILLY!
         if(appconfig.getElementsByTagName("createregistry").item(0).getTextContent().equals("yes"))
             return true;
         else return false;
