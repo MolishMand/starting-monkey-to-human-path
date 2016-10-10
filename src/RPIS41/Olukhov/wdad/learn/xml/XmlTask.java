@@ -27,7 +27,6 @@ public class XmlTask {
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = documentBuilderFactory.newDocumentBuilder();
         xmlFile = builder.parse(file);
-        xmlFile.getDocumentElement().normalize();
     }
 
     public int earningsTotal(String officiantSecondName, Calendar calendar){
@@ -35,23 +34,20 @@ public class XmlTask {
 
         NodeList dates = xmlFile.getElementsByTagName("date");
         for(int i = 0 ; i < dates.getLength(); i++){
-            Node nodeDate = dates.item(i);
-            if( nodeDate.getNodeType() == Node.ELEMENT_NODE &&
-                Integer.parseInt(dates.item(i).getAttributes().getNamedItem("day").getNodeValue()) == calendar.get(Calendar.DAY_OF_MONTH) &&
-                Integer.parseInt(dates.item(i).getAttributes().getNamedItem("month").getNodeValue()) == (calendar.get(Calendar.MONTH) + 1) &&
-                Integer.parseInt(dates.item(i).getAttributes().getNamedItem("year").getNodeValue()) == calendar.get(Calendar.YEAR)){
-
-                Element date = (Element)nodeDate;
+            Element date = (Element)dates.item(i);
+            if(Integer.parseInt(date.getAttribute("day")) == calendar.get(Calendar.DAY_OF_MONTH) &&
+                Integer.parseInt(date.getAttribute("month")) == (calendar.get(Calendar.MONTH) + 1) &&
+                Integer.parseInt(date.getAttribute("year")) == calendar.get(Calendar.YEAR)){
                 NodeList orders = date.getElementsByTagName("order");
                 for(int j = 0; j < orders.getLength(); j++){
-                    Node nodeOrder = orders.item(j);
-                    if(nodeOrder.getNodeType() == Node.ELEMENT_NODE){
-                        Element order = (Element)nodeOrder;
-                        if(order.getElementsByTagName("officiant").item(0).getAttributes().getNamedItem("secondname").getNodeValue().equals(officiantSecondName)) {
+                    Element order = (Element)orders.item(j);
+                    Element officicant = (Element)order.getElementsByTagName("officiant").item(0);
+                        if(officicant.getAttribute("secondname").equals(officiantSecondName)) {
                             int orderTotalPrice = 0;
                             NodeList items = order.getElementsByTagName("item");
                             for (int k = 0; k < items.getLength(); k++) {
-                                orderTotalPrice += Integer.parseInt(items.item(k).getAttributes().getNamedItem("cost").getNodeValue());
+                                Element currentItem = (Element)items.item(k);
+                                orderTotalPrice += Integer.parseInt(currentItem.getAttribute("cost"));
                             }
                             result+=orderTotalPrice;
                             NodeList totalcost = order.getElementsByTagName("totalcost");
@@ -68,18 +64,17 @@ public class XmlTask {
                     }
                 }
             }
-        }
 
         return result;
     }
     public void removeDay(Calendar calendar){
         NodeList dates = xmlFile.getElementsByTagName("date");
         for(int i = 0 ; i < dates.getLength(); i++){
-            Node nodeDate = dates.item(i);
-            if( Integer.parseInt(dates.item(i).getAttributes().getNamedItem("day").getNodeValue()) == calendar.get(Calendar.DAY_OF_MONTH) &&
-                Integer.parseInt(dates.item(i).getAttributes().getNamedItem("month").getNodeValue()) == (calendar.get(Calendar.MONTH) + 1) &&
-                Integer.parseInt(dates.item(i).getAttributes().getNamedItem("year").getNodeValue()) == calendar.get(Calendar.YEAR)){
-                xmlFile.getDocumentElement().removeChild(nodeDate);
+            Element date = (Element)dates.item(i);
+            if( Integer.parseInt(date.getAttribute("day")) == calendar.get(Calendar.DAY_OF_MONTH) &&
+                Integer.parseInt(date.getAttribute("month")) == (calendar.get(Calendar.MONTH) + 1) &&
+                Integer.parseInt(date.getAttribute("year")) == calendar.get(Calendar.YEAR)){
+                xmlFile.getDocumentElement().removeChild(date);
                 saveChanges();
                 return;
             }
@@ -88,23 +83,17 @@ public class XmlTask {
     public void changeOfficiantName(String oldFirstName, String oldSecondName,String newFirstName, String newSecondName){
         NodeList dates = xmlFile.getElementsByTagName("date");
         for(int i = 0 ; i < dates.getLength(); i++){
-            Node nodeDate = dates.item(i);
-            if( nodeDate.getNodeType() == Node.ELEMENT_NODE){
-                Element date = (Element)nodeDate;
-                NodeList orders = date.getElementsByTagName("order");
-                for(int j = 0; j < orders.getLength(); j++){
-                    Node nodeOrder = orders.item(j);
-                    if(nodeOrder.getNodeType() == Node.ELEMENT_NODE){
-                        Element order = (Element)nodeOrder;
-                        Element officiant = (Element)order.getElementsByTagName("officiant").item(0);
-                        if( officiant.getAttribute("firstname") != null &&
-                            officiant.getAttribute("firstname").equals(oldFirstName) &&
-                            officiant.getAttribute("secondname").equals(oldSecondName)) {
-                            officiant.setAttribute("firstname", newFirstName);
-                            officiant.setAttribute("secondname", newSecondName);
-                            saveChanges();
-                        }
-                    }
+            Element date = (Element)dates.item(i);
+            NodeList orders = date.getElementsByTagName("order");
+            for(int j = 0; j < orders.getLength(); j++){
+                Element order = (Element)orders.item(j);
+                Element officiant = (Element)order.getElementsByTagName("officiant").item(0);
+                if( officiant.getAttribute("firstname") != null &&
+                    officiant.getAttribute("firstname").equals(oldFirstName) &&
+                    officiant.getAttribute("secondname").equals(oldSecondName)) {
+                    officiant.setAttribute("firstname", newFirstName);
+                    officiant.setAttribute("secondname", newSecondName);
+                    saveChanges();
                 }
             }
         }
