@@ -1,12 +1,10 @@
 package RPIS41.Olukhov.wdad;
 
-import RPIS41.Olukhov.wdad.data.managers.TestPreferencesManager;
-
 /**
- * Created by molish on 08.10.2016.
+ * Created by molish on 25.09.2016.
  */
 public class Application {
     public static void main(String[] args) {
-        TestPreferencesManager.test();
+        System.out.println("I am Dmitry Olukhov, and I am not a monkey.");
     }
 }
