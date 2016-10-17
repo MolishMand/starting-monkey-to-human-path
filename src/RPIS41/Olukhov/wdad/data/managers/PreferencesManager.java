@@ -39,11 +39,8 @@ public class PreferencesManager {
     }
 
     public boolean getCreateRegistry(){
-        //TODO FUCK OFF BILLY!
         NodeList createRegistry = appconfig.getElementsByTagName("createregistry");
-        if(createRegistry.item(0).getTextContent().equals("yes"))
-            return true;
-        else return false;
+        return createRegistry.item(0).getTextContent().equals("yes");
     }
     public void setCreateRegistry(boolean createRegistryValue){
         NodeList createRegistry = appconfig.getElementsByTagName("createregistry");
