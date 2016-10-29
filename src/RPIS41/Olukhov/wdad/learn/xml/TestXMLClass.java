@@ -17,11 +17,9 @@ public class TestXMLClass {
         Calendar calendarRemove = Calendar.getInstance();
         calendarRemove.set(2015, Calendar.APRIL, 25);//дата для удаления
 
-        try {
-            XmlTask testClass = new XmlTask("src\\RPIS41\\Olukhov\\wdad\\learn\\xml\\testRightFirst");
-            System.out.println("Прибыль Сидорова за 8 января 2016 года: " + testClass.earningsTotal("sidorov", calendarEarnings));
-            testClass.removeDay(calendarRemove);
-            testClass.changeOfficiantName("alexander", "petrov", "sashka", "ivanov");
-        }catch (ParserConfigurationException | SAXException | IOException e){e.printStackTrace();}
+        XmlTask testClass = new XmlTask("src\\RPIS41\\Olukhov\\wdad\\learn\\xml\\testRightFirst");
+        System.out.println("Прибыль Сидорова за 8 января 2016 года: " + testClass.earningsTotal("sidorov", calendarEarnings));
+        testClass.removeDay(calendarRemove);
+        testClass.changeOfficiantName("alexander", "petrov", "sashka", "ivanov");
     }
 }

@@ -25,7 +25,7 @@
         </server>
         <client>
             <policypath>client.policy</policypath>
-            <usecodebaseonly>no</usecodebaseonly>
+            <usecodebaseonly>true</usecodebaseonly>
         </client>
         <classprovider>http://www.yourhost.free.ru/cp/cp.jar</classprovider>
     </rmi>

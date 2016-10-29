@@ -18,7 +18,6 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 import java.io.*;
-import java.util.Calendar;
 import java.util.Properties;
 
 /**
@@ -29,7 +28,7 @@ public class PreferencesManager {
     private static String sourcePath = "src\\RPIS41\\Olukhov\\wdad\\resources\\configuration\\appconfig.xml";
     private Document appconfig;
 
-    private PreferencesManager() throws ParserConfigurationException, SAXException, IOException{
+    private PreferencesManager() throws IOException, SAXException, ParserConfigurationException{
         File xmlFile = new File(sourcePath);
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
@@ -37,7 +36,7 @@ public class PreferencesManager {
         appconfig.getDocumentElement().normalize();
     }
 
-    public static PreferencesManager getInstance() throws ParserConfigurationException, SAXException, IOException{
+    public static PreferencesManager getInstance() throws IOException, SAXException, ParserConfigurationException{
         if(instance == null)
             instance = new PreferencesManager();
         return instance;
