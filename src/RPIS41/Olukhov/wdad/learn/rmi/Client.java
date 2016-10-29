@@ -56,18 +56,22 @@ public class Client {
         }
     }
 
-    private static void doWork(XmlDataManager xmlDataManager){
+    private static void doWork(XmlDataManager xmlDataManager) {
         Calendar calendarEarnings = Calendar.getInstance();
         calendarEarnings.set(2016, Calendar.JANUARY, 8);//дата для проверки прибыли за день
         Calendar calendarRemove = Calendar.getInstance();
         calendarRemove.set(2015, Calendar.APRIL, 25);//дата для удаления
-
-        System.out.println("Прибыль Сидорова за 8 января 2016 года: " + xmlDataManager.earningsTotal(new Officiant("dimas", "sidorov"), calendarEarnings));
-        xmlDataManager.removeDay(calendarRemove);
-        xmlDataManager.changeOfficiantName(new Officiant("alexander", "petrov"), new Officiant("sashka", "ivanov"));
-        for(Order order : xmlDataManager.getOrders(calendarEarnings))
-            System.out.println(order.getOfficiant().getFirstname() + " " + order.getOfficiant().getSecondName() + " " + order.getCountItems());
-        Calendar lastKolyanWorkDay = xmlDataManager.lastOfficiantWorkDate(new Officiant("kolyan", "ivanov"));
-        System.out.println("last work day kolyan ivanov: " + new SimpleDateFormat("dd-mm-yyyy").format(lastKolyanWorkDay));
+        try {
+            System.out.println("Прибыль Сидорова за 8 января 2016 года: " + xmlDataManager.earningsTotal(new Officiant("dimas", "sidorov"), calendarEarnings));
+            xmlDataManager.removeDay(calendarRemove);
+            xmlDataManager.changeOfficiantName(new Officiant("alexander", "petrov"), new Officiant("sashka", "ivanov"));
+            for (Order order : xmlDataManager.getOrders(calendarEarnings))
+                System.out.println(order.getOfficiant().getFirstname() + " " + order.getOfficiant().getSecondName() + " " + order.getCountItems());
+            Calendar lastKolyanWorkDay = xmlDataManager.lastOfficiantWorkDate(new Officiant("kolyan", "ivanov"));
+            System.out.println("last work day kolyan ivanov: " +
+                    lastKolyanWorkDay.get(Calendar.DAY_OF_MONTH) + " " +
+                    lastKolyanWorkDay.get(Calendar.MONTH) + " " +
+                    lastKolyanWorkDay.get(Calendar.YEAR));
+        }catch (RemoteException re){re.printStackTrace();}
     }
 }

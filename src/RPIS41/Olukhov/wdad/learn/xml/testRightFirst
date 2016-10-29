@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE restaurant SYSTEM "restaurant.dtd">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!DOCTYPE restaurant SYSTEM "restaurant.dtd">
 <restaurant>
     <date day="16" month="3" year="2014">
         <order>

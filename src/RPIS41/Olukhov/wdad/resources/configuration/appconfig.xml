@@ -24,7 +24,7 @@
             </registry>
         </server>
         <client>
-            <policypath>client.policy</policypath>
+            <policypath>src/RPIS41/Olukhov/wdad/learn/rmi/security.policy</policypath>
             <usecodebaseonly>true</usecodebaseonly>
         </client>
         <classprovider>http://www.yourhost.free.ru/cp/cp.jar</classprovider>

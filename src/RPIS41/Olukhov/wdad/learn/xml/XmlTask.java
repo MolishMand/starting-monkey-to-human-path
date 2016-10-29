@@ -143,7 +143,7 @@ public class XmlTask {
                 result = Calendar.getInstance();
                 result.set( Integer.parseInt(date.getAttribute("year")),
                             Integer.parseInt(date.getAttribute("month")),
-                            Integer.parseInt(date.getAttribute("date")));
+                            Integer.parseInt(date.getAttribute("day")));
             }
         }
         return result;

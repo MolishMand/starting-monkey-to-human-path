@@ -20,7 +20,7 @@ public class Server {
     private static PreferencesManager preferencesManager;
 
     private static final String XML_DATA_MANAGER = "XmlDataManager";
-    private static final int XML_DATA_MANAGER_PORT = 77777;
+    private static final int XML_DATA_MANAGER_PORT = 33333;
     private static final String CODEBASE_URL = "file:/c:/RMILAB/Codebase\\";
 
     public static void main(String[] args) {
@@ -58,12 +58,14 @@ public class Server {
                 System.out.println("Waiting ... ");
                 System.out.println("Input \"exit\" to close server.");
                 Scanner scanner = new Scanner(System.in);
+                String input;
                 while(true){
-                    if(scanner.nextLine().equals("exit")) {
+                    input = scanner.nextLine();
+                    if(input.equals("exit")) {
                         try {
                             registry.unbind(XML_DATA_MANAGER);
                             preferencesManager.removeBindedObject(XML_DATA_MANAGER);
-                            break;
+                            System.exit(0);
                         }catch (NotBoundException e){
                             e.printStackTrace();
                         }
