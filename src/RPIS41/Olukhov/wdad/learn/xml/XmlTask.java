@@ -98,6 +98,36 @@ public class XmlTask {
             }
         }
     }
+    public String getLuckyGuy(Calendar calendar){
+        int maxItemCost = 0;
+        String luckyGuySecondName = null;
+            NodeList dates = xmlFile.getElementsByTagName("date");
+            for(int i = 0; i < dates.getLength(); i++){
+                Element date = (Element)dates.item(i);
+                if(Integer.parseInt(date.getAttribute("day")) == calendar.get(Calendar.DAY_OF_MONTH) &&
+                        Integer.parseInt(date.getAttribute("month")) == (calendar.get(Calendar.MONTH) + 1) &&
+                        Integer.parseInt(date.getAttribute("year")) == calendar.get(Calendar.YEAR)){
+                    NodeList orders = date.getElementsByTagName("order");
+                    for(int j = 0; j < orders.getLength(); j++){
+                        Element order = (Element) orders.item(j);
+                        NodeList items = order.getElementsByTagName("item");
+                        int maxOrderItemCost = 0;
+                        for(int k = 0; k < items.getLength(); k++){
+                            Element item = (Element)items.item(k);
+                            int curentItemCost = Integer.parseInt(item.getAttribute("cost"));
+                            if(maxOrderItemCost < curentItemCost)
+                                maxOrderItemCost = curentItemCost;
+                        }
+                        if(maxItemCost < maxOrderItemCost){
+                            maxItemCost = maxOrderItemCost;
+                            Element officiant = (Element)order.getElementsByTagName("officiant").item(0);
+                            luckyGuySecondName = officiant.getAttribute("secondname");
+                        }
+                    }
+                }
+            }
+        return luckyGuySecondName;
+    }
 
     private void saveChanges(){
         try {
@@ -117,4 +147,5 @@ public class XmlTask {
         catch (TransformerConfigurationException e){e.printStackTrace();}
         catch (TransformerException e){e.printStackTrace();}
     }
+
 }

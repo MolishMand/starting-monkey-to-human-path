@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE restaurant SYSTEM "restaurant.dtd">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!DOCTYPE restaurant SYSTEM "restaurant.dtd">
 <restaurant>
     <date day="12" month="3" year="2015">
         <order>
-            <officiant firstname="alexander" secondname="petrov"/>
+            <officiant firstname="sashka" secondname="ivanov"/>
             <item cost="120" name="pirozhki"/>
             <item cost="50" name="chai"/>
             <item cost="240" name="borsch"/>
@@ -35,7 +34,7 @@
     </date>
     <date day="8" month="1" year="2016">
         <order>
-            <officiant firstname="alexander" secondname="petrov"/>
+            <officiant firstname="sashka" secondname="ivanov"/>
             <item cost="144" name="pirozhki"/>
             <item cost="60" name="chai"/>
             <item cost="366" name="borsch"/>
@@ -48,7 +47,7 @@
             <item cost="67" name="bulki"/>
             <item cost="140" name="pirozhki"/>
             <item cost="78" name="riba"/>
-        </order>
+        <totalcost>859</totalcost></order>
         <order>
             <officiant firstname="kolyan" secondname="ivanov"/>
             <item cost="100" name="ikra"/>
@@ -63,31 +62,31 @@
             <item cost="50" name="pizza"/>
             <item cost="555" name="pirozhki"/>
             <item cost="866" name="borsch"/>
-            <totalcost>32453453</totalcost>
+            <totalcost>2218</totalcost>
         </order>
     </date>
     <date day="23" month="6" year="2014">
         <order>
             <officiant firstname="denis" secondname="ivanov"/>
-            <item name="sous" cost="654"/>
-            <item name="bulka" cost="23"/>
+            <item cost="654" name="sous"/>
+            <item cost="23" name="bulka"/>
             <totalcost>677</totalcost>
         </order>
         <order>
             <officiant firstname="vovchik" secondname="petrov"/>
-            <item name="kolbasa" cost="600"/>
-            <item name="gribi" cost="155"/>
+            <item cost="600" name="kolbasa"/>
+            <item cost="155" name="gribi"/>
         </order>
         <order>
             <officiant secondname="sidorov"/>
-            <item name="gbf" cost="5345"/>
-            <item name="vffvd" cost="655"/>
+            <item cost="5345" name="gbf"/>
+            <item cost="655" name="vffvd"/>
             <totalcost>434</totalcost>
         </order>
     </date>
     <date day="12" month="8" year="2016">
         <order>
-            <officiant firstname="alexander" secondname="petrov"/>
+            <officiant firstname="sashka" secondname="ivanov"/>
             <item cost="144" name="pirozhki"/>
             <item cost="60" name="chai"/>
             <item cost="366" name="borsch"/>
@@ -110,32 +109,10 @@
             <item cost="233" name="borsch"/>
         </order>
     </date>
-    <date day="25" month="4" year="2015">
-        <order>
-            <officiant firstname="dimas" secondname="sidorov"/>
-            <item cost="660" name="sushi"/>
-            <item cost="87" name="sok"/>
-            <item cost="50" name="pizza"/>
-            <item cost="555" name="pirozhki"/>
-            <item cost="866" name="borsch"/>
-        </order>
-        <order>
-            <officiant firstname="victor" secondname="sidorov"/>
-            <item cost="10" name="hleb"/>
-            <item cost="220" name="kofe"/>
-            <item cost="34" name="bulki"/>
-            <item cost="150" name="pirozhki"/>
-            <item cost="88" name="riba"/>
-        </order>
-        <order>
-            <officiant firstname="vovchik" secondname="petrov"/>
-            <item name="kolbasa" cost="600"/>
-            <item name="gribi" cost="155"/>
-        </order>
-    </date>
+    
     <date day="16" month="3" year="2014">
         <order>
-            <officiant firstname="alexander" secondname="petrov"/>
+            <officiant firstname="sashka" secondname="ivanov"/>
             <item cost="144" name="pirozhki"/>
             <item cost="60" name="chai"/>
             <item cost="366" name="borsch"/>
@@ -159,8 +136,8 @@
         </order>
         <order>
             <officiant firstname="vovchik" secondname="petrov"/>
-            <item name="kolbasa" cost="600"/>
-            <item name="gribi" cost="155"/>
+            <item cost="600" name="kolbasa"/>
+            <item cost="155" name="gribi"/>
         </order>
     </date>
 </restaurant>

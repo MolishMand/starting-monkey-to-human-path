@@ -13,15 +13,17 @@ import java.util.Calendar;
 public class TestXMLClass {
     public static void test(){
         Calendar calendarEarnings = Calendar.getInstance();
-        calendarEarnings.set(2016, Calendar.JANUARY, 8);//дата для проверки прибыли за день
+        calendarEarnings.set(2016, Calendar.DECEMBER, 28);//дата для проверки прибыли за день
         Calendar calendarRemove = Calendar.getInstance();
         calendarRemove.set(2015, Calendar.APRIL, 25);//дата для удаления
+
 
         try {
             XmlTask testClass = new XmlTask("src\\RPIS41\\Olukhov\\wdad\\learn\\xml\\testRightFirst");
             System.out.println("Прибыль Сидорова за 8 января 2016 года: " + testClass.earningsTotal("sidorov", calendarEarnings));
             testClass.removeDay(calendarRemove);
             testClass.changeOfficiantName("alexander", "petrov", "sashka", "ivanov");
+            System.out.println(testClass.getLuckyGuy(calendarEarnings));
         }catch (ParserConfigurationException | SAXException | IOException e){e.printStackTrace();}
     }
 }
